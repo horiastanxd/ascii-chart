@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASCII Chart — paste numbers, get a chart for your README</title>
+<meta name="description" content="Turn a list of numbers into an ASCII chart you can paste into a README, a commit message, or a terminal. Bars, lines, sparklines. No sign up, no upload.">
+<meta property="og:title" content="ASCII Chart">
+<meta property="og:description" content="Paste numbers, get an ASCII chart. Bars, lines, sparklines. Runs in your browser.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ctext y='14' font-size='14' font-family='monospace'%3E%E2%96%88%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>ASCII Chart</h1>
+  <p>Paste numbers on the left. Copy the chart on the right into a README, a commit message, a Slack post, anywhere text goes.</p>
+</header>
+
+<main>
+  <section class="panel input">
+    <div class="panel-head">
+      <label for="data">Data</label>
+      <div class="presets">
+        <button type="button" data-preset="simple">Numbers</button>
+        <button type="button" data-preset="labeled">Labeled</button>
+        <button type="button" data-preset="weekly">Weekly</button>
+        <button type="button" data-preset="json">JSON</button>
+      </div>
+    </div>
+    <textarea id="data" spellcheck="false" autocomplete="off"></textarea>
+    <p class="hint">One number per line, or <code>label, value</code>, or a JSON array.</p>
+  </section>
+
+  <section class="panel controls">
+    <div class="row">
+      <label>Type
+        <select id="type">
+          <option value="hbar">Horizontal bars</option>
+          <option value="vbar">Vertical bars</option>
+          <option value="line">Line</option>
+          <option value="spark">Sparkline</option>
+        </select>
+      </label>
+      <label>Width
+        <input type="number" id="width" min="10" max="120" value="40">
+      </label>
+      <label class="height-field">Height
+        <input type="number" id="height" min="3" max="40" value="10">
+      </label>
+    </div>
+    <div class="row">
+      <label class="check"><input type="checkbox" id="showValues" checked> Show values</label>
+      <label class="check"><input type="checkbox" id="showAxis" checked> Show axis</label>
+      <label>Style
+        <select id="style">
+          <option value="block">Block</option>
+          <option value="solid">Solid</option>
+          <option value="ascii">ASCII only</option>
+        </select>
+      </label>
+    </div>
+  </section>
+
+  <section class="panel output">
+    <div class="panel-head">
+      <label>Chart</label>
+      <div class="actions">
+        <button type="button" id="copy">Copy</button>
+        <button type="button" id="copyMd">Copy as code block</button>
+      </div>
+    </div>
+    <pre id="chart" aria-live="polite"></pre>
+    <p class="hint" id="status"></p>
+  </section>
+</main>
+
+<footer>
+  <p>
+    Runs entirely in your browser — nothing is uploaded.
+    <a href="https://github.com/horiastanxd/ascii-chart">Source on GitHub</a>.
+  </p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
